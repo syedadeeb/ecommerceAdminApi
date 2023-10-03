@@ -1,0 +1,47 @@
+Documenting the database schema is crucial for understanding the structure and purpose of each table and their relationships within your e-commerce admin API. Below, I'll provide documentation for the database schema:
+
+### Database Schema Documentation:
+
+The database schema consists of several tables designed to support the functionalities required for the e-commerce admin API:
+
+1. **Product Table**:
+
+   - **Table Name:** `products`
+   - **Purpose:** This table stores information about the products available in the e-commerce platform. Each row represents a unique product.
+   - **Columns**:
+     - `id` (Primary Key): A unique identifier for the product.
+     - `name`: The name of the product.
+     - `description`: A brief description of the product.
+     - `price`: The price of the product.
+     - `category`: The category to which the product belongs.
+     - `created_at`: The date and time when the product was created.
+
+2. **Sale Table**:
+
+   - **Table Name:** `sales`
+   - **Purpose:** This table records information about the sales transactions, including details about products sold.
+   - **Columns**:
+     - `id` (Primary Key): A unique identifier for the sale.
+     - `product_id` (Foreign Key): References the `id` column in the `products` table, indicating the product associated with the sale.
+     - `quantity`: The quantity of the product sold in the transaction.
+     - `sale_date`: The date of the sale.
+     - `revenue`: The total revenue generated from the sale (quantity * product price).
+
+### Relationships:
+
+- **Product and Sale Relationship:**
+   - The `product_id` column in the `sales` table is a foreign key that establishes a relationship with the `id` column in the `products` table. This relationship links each sale to a specific product. It allows you to retrieve detailed information about the products sold in each transaction, such as their name, price, and category.
+
+### Database Normalization:
+
+The database design adheres to normalization principles to ensure data consistency and eliminate redundancy. Specifically, it follows the following normal forms:
+
+- First Normal Form (1NF): Each table has atomic (indivisible) values, and there are no repeating groups of columns.
+
+- Second Normal Form (2NF): There are no partial dependencies on the primary key; all non-key attributes depend on the entire primary key.
+
+- Third Normal Form (3NF): There are no transitive dependencies; all non-key attributes depend only on the primary key.
+
+### Summary:
+
+The database schema consists of two main tables, `products` and `sales`, with a clear relationship between them. The `products` table stores product information, while the `sales` table records sales transactions and their associated products. This schema provides a foundation for tracking e-commerce sales, revenue, and inventory management efficiently. It allows the API to retrieve and manipulate data related to product sales and inventory status for e-commerce administrators.
